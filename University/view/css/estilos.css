@@ -1,0 +1,44 @@
+/*Cristian*/
+body{
+    background: url("../img/Fondo.JPG");
+    background-color: #444;
+    background-size:   cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    /*background: url(https://unsplash.imgix.net/photo-1415226581130-91cb7f52f078?q=75&fm=jpg&s=859a0a6f863f8eb93a489c98402e687b),url(http://mymaplist.com/img/parallax/pinlayer1.png),url(http://mymaplist.com/img/parallax/back.png);
+*/
+}
+
+.vertical-offset-100{
+    padding-top:100px;
+}
+.login .user-row{
+    text-align: center;
+    font-size: 30px;
+}
+
+.login .img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+}
+
+.login.panel {
+    margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.75);
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+.login label{
+    display: block;
+    width: 100%;
+    color: #449d44;
+    text-shadow:#4cae4c;
+    text-align: center;
+}
+.login hr{
+    margin: 5px;
+}
