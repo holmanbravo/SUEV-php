@@ -117,6 +117,7 @@
             $pdao = new CursoDao();
             $salida = $pdao->consutarCurso();
 
+
             foreach ($salida as $obj) {
                 echo '<tr>';
                 echo '<td>' . $obj->getCodigo(). '</td>';
@@ -134,14 +135,15 @@
 
        <div class="col-sm-5" style="margin: 30px">
     <div class="alert alert-success" role="alert">Ingrese los cursos que desea crear....por medio del check puede borrar  los registros</div>
+
 <TABLE class="table" id="dataTable" width="350px" border="1">
     <TR>
-    <TD><INPUT type="text" NAME="codigo" size="5" required maxlength="3"/></TD>
+    <TD><INPUT  type="checkbox" NAME="codigo" size="5"  maxlength="3"/></TD>
     <TD><INPUT  type="text" name="nombre"
      placeholder="Nombre del Curso" required maxlength="30"/></TD>
     <TD> <select  class="form-control" name="idespecialidad">
-            <option value="1">Complementaria</option>
-            <option value="2">Tecnica</option>
+            <option value="2">Complementaria</option>
+            <option value="1">Tecnica</option>
         </select>
     </TD>
     </TR>
@@ -164,7 +166,7 @@
                    var row = table.insertRow(rowCount);
                    var cell1 = row.insertCell(0);
                    var element1 = document.createElement("input");
-                   element1.type = "text";
+                   element1.type = "checkbox";
                    cell1.appendChild(element1);
                    var cell2 = row.insertCell(1);
                    var element2 = document.createElement("input");

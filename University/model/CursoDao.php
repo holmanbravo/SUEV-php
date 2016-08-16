@@ -27,13 +27,13 @@ class CursoDao implements ICursoDao
 
       try {
        $query = " INSERT INTO cursos(codigo,nombre,idespecialidad)
-                 VALUES (?,?,?)";
+                 VALUES (nextval('curso_seq'),?,?)";
 
        $stmt = $this->conn->prepare($query);
 
-       $stmt->bindParam(1, $cur->getCodigo(), PDO::PARAM_INT);
-       $stmt->bindParam(2, $cur->getNombre(), PDO::PARAM_STR);
-       $stmt->bindParam(3, $cur->getIdespecialidad(), PDO::PARAM_INT);
+      // $stmt->bindParam(1, $cur->getCodigo(),PDO::PARAM_STR );
+       $stmt->bindParam(1, $cur->getNombre(), PDO::PARAM_STR);
+       $stmt->bindParam(2, $cur->getIdespecialidad(), PDO::PARAM_INT);
           $stmt->execute();
 
 
@@ -84,11 +84,13 @@ class CursoDao implements ICursoDao
     public function contarcursos(){
 
 
-        $queryConsultaContador="select count(*) from cursos";
+        $queryContador="select count(*)+1 from cursos";
         try {
 
-            $stmt = $this->conn->prepare($queryConsultaContador);
-            $result=$stmt->execute();
+
+            $stmts = $this->conn->prepare($queryContador);
+
+            $num=$stmts->execute();
 
             DbConnection::disconnect();
         }
@@ -96,7 +98,7 @@ class CursoDao implements ICursoDao
             echo "Revisa el siguiente error :" . $e->getMessage();
             DbConnection::disconnect();
         }
-        return $result;
+        return $num;
 
     }
 
