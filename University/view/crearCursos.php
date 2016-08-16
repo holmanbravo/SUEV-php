@@ -138,7 +138,6 @@
 
 <TABLE class="table" id="dataTable" width="350px" border="1">
     <TR>
-    <TD><INPUT  type="checkbox" NAME="codigo" size="5"  maxlength="3"/></TD>
     <TD><INPUT  type="text" name="nombre"
      placeholder="Nombre del Curso" required maxlength="30"/></TD>
     <TD> <select  class="form-control" name="idespecialidad">
@@ -151,8 +150,6 @@
 
 
            </TABLE>
-           <INPUT type="button" value="Agregar Curso" onclick="addRow('dataTable');" />
-           <INPUT type="button" value="Borrar Registro" onclick="deleteRow('dataTable');" />
            <input type="submit" class="btn btn-success" name="crear" id="btnc" value="Crear" />
            </div>
            </div>

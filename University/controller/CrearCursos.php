@@ -13,14 +13,15 @@ require_once dirname(__dir__ ) .'/model/Curso.php';
 
                 //sino hay mensajes de error entonces:
                 //1. Se crea un objeto de tipo usuario con los datos recogidos del formulario
-                $pdao = new CursoDao();
 
+
+                $pdao = new CursoDao();
                     $codigo=15;
                     $nombre=$_POST['nombre'];
                     $idespecialidad=$_POST['idespecialidad'];
                     $newCurso = new Curso($codigo,$nombre,$idespecialidad);
                     $pdao->insertCursos($newCurso);
-                    $i++;
+
 
 
             } catch (exception $e) {
