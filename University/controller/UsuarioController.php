@@ -6,19 +6,26 @@ if (isset($_REQUEST['btnIniciar']) && ($_REQUEST['btnIniciar']=='Iniciar Sesión
     $usuario = $_POST['usuario'];
     $contrasena = $_POST['contrasena'];
     $validador=$controlador->iniciarSesion($usuario,$contrasena);
-    if($validador == TRUE)
+    if($validador >0)
     {
+        if($validador==1) {
         session_start();
-        $_SESSION['nombre']=$usuario;
+        $_SESSION['nombre']=$controlador->consultarNombre($usuario);
         header("Location:../view/inicio.php");
         exit;
+        }else{
+            session_start();
+            $_SESSION['nombre']=$controlador->consultarNombre($usuario);
+            header("Location:../view/inicio1.php");
+            exit;
+        }
     }
     else{?>
         <html>
-        <link rel="stylesheet" href="../view/css/sweetalert.css">
-        <script type="text/javascript" src="../view/js/jquery.min.js"></script>
-        <script src="../view/js/sweetalert.min.js"></script>
-        <script src="../view/js/sweetalert-dev.js"></script>
+        <link rel="stylesheet" href="../view/componentes/css/sweetalert.css">
+        <script type="text/javascript" src="../view/componentes/js/jquery.min.js"></script>
+        <script src="../view/componentes/js/sweetalert.min.js"></script>
+        <script src="../view/componentes/js/sweetalert-dev.js"></script>
         <div/>
         <script type="text/javascript">
             swal({

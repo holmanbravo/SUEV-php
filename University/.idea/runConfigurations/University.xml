@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="University" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" editBeforeRun="true" activateToolWindowBeforeRun="false">
+    <TestRunner directory="$PROJECT_DIR$" />
+    <method>
+      <option name="RunConfigurationTask" enabled="true" run_configuration_name="index.php" run_configuration_type="JavascriptDebugType" />
+    </method>
+  </configuration>
+</component>

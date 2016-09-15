@@ -43,7 +43,7 @@ class UsuarioDao implements IUsuarioDao
 
         try {
 
-            $sql = "SELECT * from usuarios WHERE idUsuario=? AND contrasenia=?";
+            $sql = "SELECT * FROM usuarios WHERE idUsuario=? AND contrasenia=?";
             $query = $this->conn->prepare($sql);
             $query->bindParam(1, $usuario);
             $query->bindParam(2, $contrasenia);
@@ -55,7 +55,7 @@ class UsuarioDao implements IUsuarioDao
 
                 $fila = $query->fetch();
                 $_SESSION['nombre'] = $fila['nombre'];
-                return TRUE;
+                return $this->verificarRol($usuario);
 
             }
         } catch (PDOException $e) {
@@ -63,6 +63,33 @@ class UsuarioDao implements IUsuarioDao
         }
 
 
+    }
+
+    public function verificarRol($usuario)
+    {
+        $sql = "SELECT DISTINCT \"idRol\" FROM usuarios
+                JOIN rolesusuarios ru
+                ON \"idUsuario\"=ru.\"idUsuario\" WHERE \"idUsuario\"=?";
+        $query = $this->conn->prepare($sql);
+        $query->bindParam(1, $usuario);
+        $query->execute();
+        while ($row = $query->fetch()) {
+            return $row[0];
+        }
+
+
+    }
+
+    public function consultarNombre($usuario)
+    {
+        $sql = "SELECT CONCAT(\"primerNombre\",' ',\"primerApellido\") FROM datospersonales d
+       JOIN usuarios u ON d.identificacion=u.identificacion WHERE u.idusuario=?";
+        $query = $this->conn->prepare($sql);
+        $query->bindParam(1, $usuario);
+        $query->execute();
+        while ($row = $query->fetch()) {
+            return $row[0];
+        }
     }
 
     public function cerrarSesion()

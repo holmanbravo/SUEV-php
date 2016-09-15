@@ -9,13 +9,14 @@
     <title>Inicio Sesión</title>
     <meta name="viewport"
           content="width=device-width,user-scable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="view/css/estilos.css">
-    <link rel="stylesheet" href="view/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="view/css/sweetalert.css">
-    <link rel="stylesheet" href="view/css/formValidation.css"/>
-    <script type="text/javascript" src="view/js/jquery.min.js"></script>
-    <script type="text/javascript" src="view/js/formValidation.js"></script>
-    <script type="text/javascript" src="view/js/framework/bootstrap.js"></script>
+    <link rel="stylesheet" type="text/css" href="view/componentes/css/estilos.css">
+    <link rel="stylesheet" href="view/componentes/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="view/componentes/css/sweetalert.css">
+
+    <link rel="stylesheet" href="view/componentes/css/formValidation.css"/>
+    <script type="text/javascript" src="view/componentes/js/jquery.min.js"></script>
+    <script type="text/javascript" src="view/componentes/js/formValidation.js"></script>
+    <script type="text/javascript" src="view/componentes/js/framework/bootstrap.js"></script>
 </head>
 <body>
 <!--<img src="view/img/Fondo1.JPG" height="200px" width="100%" style="margin-bottom: 20px">-->
@@ -33,7 +34,7 @@
             <div class="panel-body">
                 <div class="form-group">
                     <h3 class="panel-title user-row">
-                        <img src="view/img/Computer.jpg" height="80px" width="80px">Bienvenido</h3>
+                        <img src="view/componentes/img/Computer.jpg" height="80px" width="80px">Bienvenido</h3>
                     <hr>
                 </div>
                 <form id="formulario" method="post" action="controller/UsuarioController.php" enctype="multipart/form-data">
@@ -116,10 +117,10 @@
             });
         }
     });</script>
-<script type="text/javascript" src="view/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="view/componentes/js/bootstrap.min.js"></script>
 
-<script src="view/js/sweetalert.min.js"></script>
-<script src="view/js/sweetalert-dev.js"></script>
+<script src="view/componentes/js/sweetalert.min.js"></script>
+<script src="view/componentes/js/sweetalert-dev.js"></script>
 
 <!--require_once '/utils/DbConnection.php';
 

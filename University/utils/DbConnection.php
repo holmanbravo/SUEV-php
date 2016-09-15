@@ -8,8 +8,8 @@ class DbConnection
 {
     private static $dbName = 'Universidad';
     private static $dbHost = 'localhost';
-    private static $dbUsername = 'postgres';
-    private static $dbUserPassword = '1234';
+    private static $dbUsername = 'admin';
+    private static $dbUserPassword = '123456';
     private static $dbPort = '5432';
     private static $MyConnection = null;
 
