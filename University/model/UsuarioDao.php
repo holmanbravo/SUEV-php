@@ -52,9 +52,6 @@ class UsuarioDao implements IUsuarioDao
 
             //si existe el usuario
             if ($query->rowCount() == 1) {
-
-                $fila = $query->fetch();
-                $_SESSION['nombre'] = $fila['nombre'];
                 return $this->verificarRol($usuario);
 
             }
@@ -67,9 +64,9 @@ class UsuarioDao implements IUsuarioDao
 
     public function verificarRol($usuario)
     {
-        $sql = "SELECT DISTINCT \"idRol\" FROM usuarios
+        $sql = "SELECT  \"idRol\" FROM usuarios u
                 JOIN rolesusuarios ru
-                ON \"idUsuario\"=ru.\"idUsuario\" WHERE \"idUsuario\"=?";
+                ON  u.idUsuario=ru.\"idUsuario\" WHERE u.idUsuario=?";
         $query = $this->conn->prepare($sql);
         $query->bindParam(1, $usuario);
         $query->execute();

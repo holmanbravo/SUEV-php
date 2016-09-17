@@ -11,6 +11,6 @@ interface ICursoDao
 
     public function  insertCursos(Curso $curso);
     public function  consutarCurso();
-
+    public  function consultarCursoUsuario($usuario);
 }
 ?>

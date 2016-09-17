@@ -7,8 +7,7 @@
 <head>
     <meta charset="utf-8">
     <title>Inicio Sesión</title>
-    <meta name="viewport"
-          content="width=device-width,user-scable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width,user-scable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
     <link rel="stylesheet" type="text/css" href="view/componentes/css/estilos.css">
     <link rel="stylesheet" href="view/componentes/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="view/componentes/css/sweetalert.css">

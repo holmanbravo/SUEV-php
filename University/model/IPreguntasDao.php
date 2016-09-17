@@ -11,5 +11,6 @@ interface IPreguntasDao
 
     //public function getAll();
     public function insertPreguntas(Pregunta $pre);
+    public  function consultarPreguntas($curso);
 }
 ?>

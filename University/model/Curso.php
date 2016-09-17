@@ -11,7 +11,20 @@ class Curso
 
 private $codigo;
 private $nombre;
-private $idespecialidad;
+private $idEspecialidad;
+
+    /**
+     * Curso constructor.
+     * @param $codigo
+     * @param $nombre
+     * @param $idEspecialidad
+     */
+    public function __construct($codigo, $nombre, $idEspecialidad)
+    {
+        $this->codigo = $codigo;
+        $this->nombre = $nombre;
+        $this->idEspecialidad = $idEspecialidad;
+    }
 
     /**
      * Curso constructor.
@@ -20,12 +33,6 @@ private $idespecialidad;
      * @param $idespecialidad
      */
 
-    public function __construct($codigo, $nombre, $idespecialidad)
-    {
-        $this->codigo = $codigo;
-        $this->nombre = $nombre;
-        $this->idespecialidad = $idespecialidad;
-    }
 
     /**
      * @return mixed
@@ -62,18 +69,23 @@ private $idespecialidad;
     /**
      * @return mixed
      */
-    public function getIdespecialidad()
+    public function getIdEspecialidad()
     {
-        return $this->idespecialidad;
+        return $this->idEspecialidad;
     }
 
     /**
-     * @param mixed $idespecialidad
+     * @param mixed $idEspecialidad
      */
-    public function setIdespecialidad($idespecialidad)
+    public function setIdEspecialidad($idEspecialidad)
     {
-        $this->idespecialidad = $idespecialidad;
+        $this->idEspecialidad = $idEspecialidad;
     }
+
+    /**
+     * @return mixed
+     */
+
 
 
 

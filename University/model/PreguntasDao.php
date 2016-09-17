@@ -73,6 +73,19 @@ class PreguntasDao implements IPreguntasDao
 
     }
 
+    public function consultarPreguntas($curso)
+    {
+        $preguntas=array();
+        $sql="SELECT * FROM preguntas WHERE \"idCurso\"=?";
+        $query = $this->conn->prepare($sql);
+        $query->bindParam(1, $curso);
+        $query->execute();
+        foreach ($query as $row)
+        {
+            $preguntas[]=$row;
+        }
+        return $preguntas;
     }
+}
 
 ?>

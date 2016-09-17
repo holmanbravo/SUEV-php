@@ -103,6 +103,20 @@ class CursoDao implements ICursoDao
     }
 
 
+    public function consultarCursoUsuario($usuario)
+    {   $cursos=array();
+        $sql = "SELECT codigo,nombre FROM cursos c JOIN cursosusuarios cu
+                ON c.codigo=cu.\"codigoCurso\" JOIN usuarios u ON  cu.identificacion=u.identificacion
+                WHERE u.idusuario=?";
+        $query = $this->conn->prepare($sql);
+        $query->bindParam(1, $usuario);
+        $query->execute();
+        foreach ($query as $row)
+        {
+            $cursos[]=$row;
+        }
+        return $cursos;
+    }
 }
 
 ?>
