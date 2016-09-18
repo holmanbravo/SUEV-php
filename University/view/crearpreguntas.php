@@ -15,15 +15,15 @@
 <?php if (isset($_SESSION['nombre']))
 {
 ?>
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">
-                <img width="50" src="componentes/img/evaluacion2.png">
-            </a>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    <img width="50" src="componentes/img/evaluacion2.png">
+                </a>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 <!-- menu-->
 <nav class="navbar navbar-inverse navbar-static-top" style="margin-bottom:30px">
     <div class="container-fluid">
@@ -90,6 +90,12 @@
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
 </nav>
+
+<?php require_once dirname(__dir__) . '/model/CursoDao.php';
+$cursoDao = new CursoDao();
+$cursos = $cursoDao->consultarCursoUsuario($_SESSION['usuario']);
+
+?>
 <div class="container">
     <div class="alert alert-success" role="alert">Ingrese la pregunta que desea crear, asociela a un curso y marque el
         punto correcto.
@@ -98,12 +104,13 @@
         <fieldset>
             <legend></legend>
             <label for="ccomment">Curso a Asociar</label>
-            <select class="form-control" name="idcurso">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+            <select class="form-control" id="opciones" name="curso">
+                <option class="form-control" value="">Seleccione un curso</option>
+                <?php
+                for ($i = 0; $i < sizeof($cursos); $i++) {
+                    echo "<option value='" . $cursos[$i]["codigo"] . "'>" . $cursos[$i]["nombre"] . "</option> ";
+                }
+                ?>
             </select>
 
             <p>
