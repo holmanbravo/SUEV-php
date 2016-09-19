@@ -68,6 +68,20 @@ class ExamenDao implements IExamenDao
 
 
     }
+
+    public function validarFechaExamen($fechaInicio){
+        $sql="SELECT \"idExamen\" FROM examenes WHERE (SELECT DATE(\"fechaInicio\"))=? OR (SELECT DATE(\"fechaFin\"))=?";
+        $query = $this->conn->prepare($sql);
+        $query->bindParam(1, $fechaInicio);
+        $query->bindParam(2, $fechaInicio);
+        $query->execute();
+        if ($query->rowCount() == 1) {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }
 
 ?>

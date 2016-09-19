@@ -6,10 +6,8 @@
           content="width=device-width,user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
     <title>Examen Manual</title>
     <link rel="stylesheet" href="componentes/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="componentes/css/formValidation.css"/>
     <link rel="stylesheet" type="text/css" href="css/estilos.css">
     <link rel="stylesheet" href="componentes/css/sweetalert.css">
-    <link href="componentes/css/datepicker.css" rel="stylesheet" type="text/css"/>
 
 </head>
 <body>
@@ -62,7 +60,7 @@
                                             aria-haspopup="true" aria-expanded="false"><span
                                 class="glyphicon glyphicon-folder-open"></span> Examen<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Registrar Examen Manual</a></li>
+                            <li><a href="examenManual.php">Registrar Examen Manual</a></li>
                             <li><a href="#">Registrar Examen Automático</a></li>
                         </ul>
                     </li>
@@ -101,23 +99,18 @@
 <script type="text/javascript" src="componentes/js/bootstrap.min.js"></script>
 <script src="componentes/js/sweetalert.min.js"></script>
 <script src="componentes/js/sweetalert-dev.js"></script>
-<script src="componentes/js/bootstrap-datepicker.js" type="text/javascript"></script>
+
 <?php require_once dirname(__dir__) . '/model/PreguntaDao.php';
 $curso = $_POST['curso'];
+$fechaInicio= $_POST['fechaInicio'];
+$fechaFin=$_POST{'fechaFin'};
 $preguntaDao = new PreguntaDao();
 $preguntas = $preguntaDao->consultarPreguntas($curso);
 if (sizeof($preguntas) > 0) {
 
     for ($i = 0; $i < sizeof($preguntas); $i++) {
         echo "<form action=\"../controller/ExamenController.php\" method=\"post\">";
-        if ($i == 0) {
-            echo "<div class=\"form-group container\">
-                  <label class=\"col-md-2 control-label\" for=\"FechaDeInicio\"><font color=\"red\" size=\"4\">*</font>Fecha De Inicio:</label><div class=\"col-md-4\">
-                  <input id=\"fechaInicio\" type=\"text\" name=\"fechaInicio\" class=\" input-md\"></div>
-                   <label class=\"col-md-2 control-label\" for=\"fechaFinal\"><font color=\"red\" size=\"4\">*</font>Fecha Final:</label><div class=\"col-md-4\">
-                   <input id=\"fechaFin\" type=\"text\" name=\"fechaFin\" class=\"input-md\"></div>
-                    </div>";
-        }
+
         echo "<table style='margin: auto' width=\"90%\" border=\"1\" cellspacing=\"0\" cellpadding=\"0\">\n";
         echo "<tr><td class=\"bgwhite10\" align =\"center\" width=\"10%\"><b> " . ($i + 1) . " </b></td>
 			  <td colspan=5 align =\"center\"><b>" . $preguntas[$i]["enunciado"] . "<b></td></tr>\n
@@ -134,7 +127,10 @@ if (sizeof($preguntas) > 0) {
         echo "<br>\n";
 
     }
-    echo "<input value=" . $curso . " name=\"curso\" style='visibility:hidden'/>";
+    echo "<input value=\"$curso\" name=\"curso1\" style='visibility:hidden'/>";
+    echo "<input value=\"$fechaInicio\" name=\"fechaInicio\" style='visibility: hidden'/>";
+    echo "<input value=\"$fechaFin\" name=\"fechaFin\" style='visibility: hidden' />";
+
 
     echo "<br/><input value=\"Registar\"  type=\"submit\" name=\"btnRegistrar\" id=\"registrar\" class=\"btn btn-primary\" style='margin-left: 89%;margin-bottom: 10px'/>";
     echo "</form>";
@@ -142,8 +138,8 @@ if (sizeof($preguntas) > 0) {
     echo "<script type=\"text/javascript\">
       swal({
                 type: \"error\",
-                title: \"¡No hay preguntas registradas para este curso!\",
-                text: \"Debe registrar minimo 5 preguntas para poder crear un examen\",
+                title: \"¡No hay suficientes preguntas registradas para este curso!\",
+                text: \"Se debe registrar minimo 5 preguntas para poder crear un examen\",
                 confirmButtonText: \"Aceptar\",
                 showConfirmButton: true,
                 allowOutsideClick: true
@@ -167,46 +163,12 @@ if (sizeof($preguntas) > 0) {
             });
             return false;
         }
-        if( $('#fechaInicio').val() ==='' || $('#fechaFin').val() ==='') {
-            swal({
-                type: "error",
-                title: "¡No se puede registrar el examen!",
-                text: " Se debe seleccionar la fecha inicio y fecha final del examen",
-                confirmButtonText: "Aceptar",
-                showConfirmButton: true,
-                allowOutsideClick: true
-            });
-            return false;
-        }
+
     });
 </script>
 
 
-<script type="text/javascript">
 
-
-    $(document).ready(function () {
-        // Generate a simple captcha
-        $("#fechaInicio").datepicker().on('click', function (ev) {
-            $(this).datepicker("show");
-        });
-
-        $("#fechaInicio").datepicker().on('changeDate', function (ev) {
-            this.focus();
-            $(this).datepicker("hide");
-        });
-
-        $("#fechaFin").datepicker().on('click', function (ev) {
-            $(this).datepicker("show");
-        });
-
-        $("#fechaFin").datepicker().on('changeDate', function (ev) {
-            this.focus();
-            $(this).datepicker('hide');
-        });
-
-
-    });</script>
 
 </body>
 </html>

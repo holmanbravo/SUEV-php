@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <meta nam="viewport"
@@ -7,7 +7,8 @@
     <title>Examen Manual</title>
     <link rel="stylesheet" href="componentes/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="componentes/css/sweetalert.css">
-    <script type="text/javascript" src="componentes/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="componentes/css/bootstrap-datetimepicker.min.css"/>
+
 </head>
 <body>
 <?php session_start() ?>
@@ -59,7 +60,7 @@
                                             aria-haspopup="true" aria-expanded="false"><span
                                 class="glyphicon glyphicon-folder-open"></span> Examen<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Registrar Examen Manual</a></li>
+                            <li><a href="examenManual.php">Registrar Examen Manual</a></li>
                             <li><a href="#">Registrar Examen Automático</a></li>
                         </ul>
                     </li>
@@ -97,10 +98,10 @@ $cursoDao = new CursoDao();
 $cursos = $cursoDao->consultarCursoUsuario($_SESSION['usuario']);
 
 ?>
-<form class="form-inline" style="margin: auto;width: 500px" action="examenManual1.php" method="post">
-    <div class="form-group">
-        <label for="sel1">Curso:</label>
-        <select class="form-control" id="opciones" name="curso">
+<form class="form-inline" style="width: 100%" action="../controller/ExamenController.php" method="post">
+    <div class=" form-group">
+        <label class="col-md-1" style="width:10%;margin-left: 10%"><font color="red" size="4">*</font>Curso:</label>
+        <select class="form-control col-md-2" id="opciones" name="curso">
             <option class="form-control" value="">Seleccione un curso</option>
             <?php
             for ($i = 0; $i < sizeof($cursos); $i++) {
@@ -108,11 +109,32 @@ $cursos = $cursoDao->consultarCursoUsuario($_SESSION['usuario']);
             }
             ?>
         </select>
+
+        <div class="container">
+            <label class="col-md-2" style="width:13%"><font color="red" size="4">*</font>Fecha De
+                Inicio:</label>
+
+            <div class="col-md-2">
+                <input id="fechaInicio" type="text" name="fechaInicio" class=" input-md"  placeholder="Seleccione fecha y hora ">
+            </div>
+            <label class="col-md-3 control-label" style="width:13%"><font color="red" size="4">*</font>Fecha
+                Final:</label>
+
+            <div class="col-md-2">
+                <input id="fechaFin" type="text" name="fechaFin" class="input-md" placeholder="Seleccione fecha y hora ">
+            </div>
+        </div>
     </div>
-    <input type="submit" id="aceptar"  value="Aceptar" class="btn btn-primary"/>
+    <br/>
+    <input type="submit" id="aceptar" name="btnAceptar" value="Aceptar" class="btn btn-primary" style="margin-left: 10%;margin-top: 1%"/>
 </form>
 
-
+<script type="text/javascript" src="componentes/js/jquery.min.js"></script>
+<script type="text/javascript" src="componentes/js/bootstrap.min.js"></script>
+<script src="componentes/js/sweetalert.min.js"></script>
+<script src="componentes/js/sweetalert-dev.js"></script>
+<script type="text/javascript" src="componentes/js/moment-with-locales.min.js"></script>
+<script type="text/javascript" src="componentes/js/bootstrap-datetimepicker.min.js"></script>
 <script>
     $('#aceptar').click(function () {
           var indice=document.getElementById("opciones").selectedIndex;
@@ -126,10 +148,39 @@ $cursos = $cursoDao->consultarCursoUsuario($_SESSION['usuario']);
             });
             return false;
        }
+        if ($('#fechaInicio').val() === '' || $('#fechaFin').val() === '') {
+            swal({
+                type: "error",
+                title: "¡No se puede registrar el examen!",
+                text: " Se debe seleccionar la fecha inicio y fecha final del examen",
+                confirmButtonText: "Aceptar",
+                showConfirmButton: true,
+                allowOutsideClick: true
+            });
+            return false;
+        }
     });
 </script>
-<script type="text/javascript" src="componentes/js/bootstrap.min.js"></script>
-<script src="componentes/js/sweetalert.min.js"></script>
-<script src="componentes/js/sweetalert-dev.js"></script>
+
+<script type="text/javascript">
+
+    $(function () {
+        $('#fechaInicio').datetimepicker({locale: 'es'});
+        $('#fechaFin').datetimepicker({
+            locale: 'es',
+            useCurrent: false //Important! See issue #1075
+        });
+        $("#fechaInicio").on("dp.change", function (e) {
+            $('#fechaFin').data("DateTimePicker").minDate(e.date);
+        });
+        $("#fechaFin").on("dp.change", function (e) {
+            $('#fechaInicio').data("DateTimePicker").maxDate(e.date);
+        });
+    });
+
+
+</script>
+
+
 </body>
 </html>

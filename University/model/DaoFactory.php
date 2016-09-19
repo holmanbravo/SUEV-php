@@ -14,9 +14,14 @@ class DaoFactory
     return new UsuarioDao();
     }
 
-    public static function getPreguntasDao()
+    public static function getPreguntaDao()
     {
-        return new PreguntasDao();
+        return new PreguntaDao();
+    }
+
+    public static function getCursoDao()
+    {
+        return new CursoDao();
     }
 }
 ?>
