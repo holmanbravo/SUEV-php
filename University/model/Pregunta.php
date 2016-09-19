@@ -15,7 +15,7 @@ class Pregunta
     private $respuesta1;
     private $respuesta2;
     private $respuesta3;
-    private $respusta4;
+    private $respuesta4;
     private $respuesta5;
     private $correcta;
     private $estado;
@@ -28,12 +28,12 @@ class Pregunta
      * @param $respuesta1
      * @param $respuesta2
      * @param $respuesta3
-     * @param $respusta4
+     * @param $respuesta4
      * @param $respuesta5
      * @param $correcta
      * @param $estado
      */
-    public function __construct($idcurso, $enunciado, $respuesta1, $respuesta2, $respuesta3, $respusta4, $respuesta5, $correcta)
+    public function __construct($idcurso, $enunciado, $respuesta1, $respuesta2, $respuesta3, $respuesta4, $respuesta5, $correcta, $estado)
     {
 
         $this->idcurso = $idcurso;
@@ -41,9 +41,10 @@ class Pregunta
         $this->respuesta1 = $respuesta1;
         $this->respuesta2 = $respuesta2;
         $this->respuesta3 = $respuesta3;
-        $this->respusta4 = $respusta4;
+        $this->respuesta4 = $respuesta4;
         $this->respuesta5 = $respuesta5;
         $this->correcta = $correcta;
+        $this->estado = $estado;
 
     }
 
@@ -133,18 +134,21 @@ class Pregunta
     /**
      * @return mixed
      */
-    public function getRespusta4()
+    public function getRespuesta4()
     {
-        return $this->respusta4;
+        return $this->respuesta4;
     }
 
     /**
-     * @param mixed $respusta4
+     * @param mixed $respuesta4
      */
-    public function setRespusta4($respusta4)
+    public function setRespuesta4($respuesta4)
     {
-        $this->respusta4 = $respusta4;
+        $this->respuesta4 = $respuesta4;
     }
+
+
+
 
     /**
      * @return mixed

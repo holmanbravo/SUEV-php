@@ -102,7 +102,7 @@
 <script src="componentes/js/sweetalert.min.js"></script>
 <script src="componentes/js/sweetalert-dev.js"></script>
 <script src="componentes/js/bootstrap-datepicker.js" type="text/javascript"></script>
-<?php require_once dirname(__dir__) . '/model/PreguntasDao.php';
+<?php require_once dirname(__dir__) . '/model/PreguntaDao.php';
 $curso = $_POST['curso'];
 $preguntasDao = new PreguntasDao();
 $preguntas = $preguntasDao->consultarPreguntas($curso);

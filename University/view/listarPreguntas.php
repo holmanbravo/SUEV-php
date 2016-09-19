@@ -58,7 +58,7 @@
             <tbody>
 
             <?php
-            require_once ('model/PreguntasDao.php');
+            require_once ('model/PreguntaDao.php');
             //echo 'LLamado al Dao <br> ';
             $pdao = new PreguntasDao();
             $salida = $pdao->getAll();
