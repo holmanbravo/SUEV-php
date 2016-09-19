@@ -104,8 +104,8 @@
 <script src="componentes/js/bootstrap-datepicker.js" type="text/javascript"></script>
 <?php require_once dirname(__dir__) . '/model/PreguntaDao.php';
 $curso = $_POST['curso'];
-$preguntasDao = new PreguntasDao();
-$preguntas = $preguntasDao->consultarPreguntas($curso);
+$preguntaDao = new PreguntaDao();
+$preguntas = $preguntaDao->consultarPreguntas($curso);
 if (sizeof($preguntas) > 0) {
 
     for ($i = 0; $i < sizeof($preguntas); $i++) {
