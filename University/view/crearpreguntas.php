@@ -100,12 +100,13 @@ $cursos = $cursoDao->consultarCursoUsuario($_SESSION['usuario']);
     <div class="alert alert-success" role="alert">Ingrese la pregunta que desea crear, asociela a un curso y marque el
         punto correcto.
     </div>
-    <form class="form-horizontal" id="commentForm" method="post" action="../controller/GuardarPreguntas.php">
+    <form class="form-horizontal" id="commentForm" method="post" action="../controller/PreguntaController.php">
         <fieldset>
             <legend></legend>
             <label for="ccomment">Curso a Asociar</label>
-            <select class="form-control" id="opciones" name="curso">
+            <select class="form-control" id="curso" name="curso">
                 <option class="form-control" value="">Seleccione un curso</option>
+
                 <?php
                 for ($i = 0; $i < sizeof($cursos); $i++) {
                     echo "<option value='" . $cursos[$i]["codigo"] . "'>" . $cursos[$i]["nombre"] . "</option> ";
@@ -121,7 +122,7 @@ $cursos = $cursoDao->consultarCursoUsuario($_SESSION['usuario']);
 
             <p>
                 <label for="pregunta1">Opcion 1</label>
-                <input id="opcion1" name="opcion" type="radio" value="rbipeliculas"><input id="pregunta1"
+                <input id="opcion1" name="opcion" type="radio" value="1"><input id="pregunta1"
                                                                                            name="respuesta1"
                                                                                            minlength="2" type="text"
                                                                                            class="form-control"
@@ -130,7 +131,7 @@ $cursos = $cursoDao->consultarCursoUsuario($_SESSION['usuario']);
             </p>
             <p>
                 <label for="pregunta2">Opcion 2</label>
-                <input id="opcion2" name="opcion" type="radio" value="rbipeliculas"><input id="pregunta2"
+                <input id="opcion2" name="opcion" type="radio" value="2"><input id="pregunta2"
                                                                                            name="respuesta2"
                                                                                            minlength="2" type="text"
                                                                                            class="form-control"
@@ -139,7 +140,7 @@ $cursos = $cursoDao->consultarCursoUsuario($_SESSION['usuario']);
             </p>
             <p>
                 <label for="pregunta3">Opcion 3</label>
-                <input id="opcion3" name="opcion" type="radio" value="rbipeliculas"><input id="pregunta3" type="text"
+                <input id="opcion3" name="opcion" type="radio" value="3"><input id="pregunta3" type="text"
                                                                                            minlength="2"
                                                                                            name="respuesta3"
                                                                                            class="form-control"
@@ -148,7 +149,7 @@ $cursos = $cursoDao->consultarCursoUsuario($_SESSION['usuario']);
             </p>
             <p>
                 <label for="pregunta4">Opcion 4</label>
-                <input id="opcion4" name="opcion" type="radio" value="rbipeliculas"><input id="pregunta4" type="text"
+                <input id="opcion4" name="opcion" type="radio" value="4"><input id="pregunta4" type="text"
                                                                                            minlength="2"
                                                                                            name="respuesta4"
                                                                                            class="form-control"
@@ -157,7 +158,7 @@ $cursos = $cursoDao->consultarCursoUsuario($_SESSION['usuario']);
             </p>
             <p>
                 <label for="pregunta5">Opcion 5</label>
-                <input id="opcion5" name="opcion" type="radio" value="rbipeliculas"><input id="pregunta5" type="text"
+                <input id="opcion5" name="opcion" type="radio" value="5"><input id="pregunta5" type="text"
                                                                                            minlength="2"
                                                                                            name="respuesta5"
                                                                                            class="form-control"
@@ -191,9 +192,6 @@ $cursos = $cursoDao->consultarCursoUsuario($_SESSION['usuario']);
                 if (a == rdbtn.length) {
                     swal("Seleccione la respuesta que se debe guardar como correcta");
                     return false;
-                } else {
-                    swal("Pregunta Creada");
-                    return true;
                 }
             }
         });
@@ -201,6 +199,21 @@ $cursos = $cursoDao->consultarCursoUsuario($_SESSION['usuario']);
 </script>
 <script>
     $("#commentForm").validate();
+</script>
+<script>
+    $('#btnc').click(function () {
+        var indice=document.getElementById("curso").selectedIndex;
+        if (indice==null || indice==0) {
+            swal({
+                type: "error",
+                title: "¡Se debe seleccionar un curso!",
+                confirmButtonText: "Aceptar",
+                showConfirmButton: true,
+                allowOutsideClick: true
+            });
+            return false;
+        }
+    });
 </script>
 <script type="text/javascript" src="componentes/js/bootstrap.min.js"></script>
 </body>
