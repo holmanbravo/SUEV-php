@@ -45,7 +45,7 @@
                 <li><a href="inicio.php"><span class="glyphicon glyphicon-home"></span>  Inicio</a></li>
                 <li class="dropdown"><a href="#"  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-question-sign"></span>  Preguntas<span class="caret"></span></a><ul class="dropdown-menu">
                         <li><a href="crearpreguntas.php">Crear Preguntas</a></li>
-                        <li><a href="#">Consultar Preguntas</a></li>
+                        <li><a href="consultarPreguntas.php">Consultar Preguntas</a></li>
                     </ul>
                 </li>
                 <li><a href="crearCursos.php">Crear Cursos</a></li>

@@ -14,5 +14,6 @@ interface IPreguntaDao
     public  function consultarPreguntas($curso);
     public function editarPreguntas(Pregunta $pre);
     public function eliminarPreguntas(Pregunta $pre);
+    public  function consultarPreguntas2(Pregunta $pre);
 }
 ?>
