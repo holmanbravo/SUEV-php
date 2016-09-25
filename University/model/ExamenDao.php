@@ -39,7 +39,7 @@ class ExamenDao implements IExamenDao
 
     public function registrarExamen(Examen $examen, array $preguntas)
     {
-        $query = "INSERT INTO examenes(
+            $query = "INSERT INTO examenes(
               \"codigoCurso\", \"idUsuarioCreacion\", \"numeroPreguntas\",
              \"fechaInicio\", \"fechaFin\")
                VALUES ( ?, ?, ?, ?, ?)";
@@ -52,12 +52,12 @@ class ExamenDao implements IExamenDao
             $stmt->bindParam(5, $examen->getFechaFin(), PDO::PARAM_STR);
             $stmt->execute();
 
-            $idExamen=0;
             $idExamen=$this->consultarIdExamen();
+
             foreach ($preguntas as $preguntas1) {
                 $query1 = "INSERT INTO preguntasexamen(
             \"idExamen\", \"idPregunta\")
-           VALUES ($idExamen,$preguntas1)";
+           VALUES ('$idExamen',$preguntas1)";
                 $stmt1 = $this->conn->prepare($query1);
                 $stmt1->execute();
             }
@@ -68,9 +68,9 @@ class ExamenDao implements IExamenDao
                 $fechaInicio=$examen[$i]["fechaInicio"];
                 $fechaFin=$examen[$i]["fechaFin"];
             }
-            $this->emailService->enviarCorreo($correos,$fechaInicio,$fechaFin);
+            $this->emailService->enviarCorreo($correos,$fechaInicio,$fechaFin,$idExamen);
 
-            if ($stmt->rowCount() > 0) {
+        if ($stmt->rowCount() > 0) {
                 $salida = true;
             } else {
                 $salida = false;
@@ -87,7 +87,8 @@ class ExamenDao implements IExamenDao
 
     public function consultarIdExamen()
     {
-        $sql = "SELECT CAST( MAX(\"idExamen\") AS INT) FROM examenes";
+
+        $sql = "SELECT MAX(\"idExamen\") FROM examenes";
         $query = $this->conn->prepare($sql);
         $query->execute();
         while ($row = $query->fetch()) {

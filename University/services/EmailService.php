@@ -49,7 +49,7 @@ class EmailService  implements IEmailService
     }
 
 
-    public function enviarCorreo(array $correosDestino,$fechaInicio,$fechaFin)
+    public function enviarCorreo(array $correosDestino,$fechaInicio,$fechaFin,$clave)
     {
         for ($i = 0; $i < sizeof($correosDestino); $i++) {
         $this->mail->From = "crisboyr@gmail.com";
@@ -58,7 +58,7 @@ class EmailService  implements IEmailService
         $this->mail->addAddress($correosDestino[$i]["correoElectronico"]);
         $this->mail->IsHTML(true);
         /** Configurar cuerpo del mensaje **/
-        $this->mail->Body= 'Buen dia querido estudiante,le informamos que tiene un examen programado en plataforma,el cual lo puede presentar desde el <b>'.$fechaInicio.'</b> hasta el <b>'.$fechaFin.'</b>';
+        $this->mail->Body= 'Buen dia querido estudiante,le informamos que tiene un examen programado en plataforma,el cual lo puede presentar desde el <b>'.$fechaInicio.'</b> hasta el <b>'.$fechaFin.'</b><br/>Para presentar este examen debe ingresar la siguiente <b>Clave: </b><b>'.$clave.'</b>';
         $this->mail->AltBody = 'Buen dia querido estudiante,le informamos que tiene un examen programado en plataforma,el cual lo puede presentar desde el '.$fechaInicio.' hasta el '.$fechaFin;
 
         /** Para que use el lenguaje español **/
