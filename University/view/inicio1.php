@@ -13,7 +13,7 @@
 </head>
 <body>
 <?php session_start()?>
-<?php if(isset($_SESSION['nombre']))
+<?php if(isset($_SESSION['nombre']) && $_SESSION['rol']==2)
 {
 ?>
 
@@ -44,7 +44,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="inicio1.php"><span class="glyphicon glyphicon-home"></span>  Inicio</a></li>
                 <li class="dropdown"><a href="#"  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-folder-open"></span> Examen<span class="caret"></span></a><ul class="dropdown-menu">
-                        <li><a href="#">Presentar Examen</a></li>
+                        <li><a href="presentarExamen.php">Presentar Examen</a></li>
                         <li><a href="#">Consultar Resultado</a></li>
                     </ul>
                 </li>
@@ -56,10 +56,7 @@
                             <button style="background-color: black;color:white;padding: 13px;width: auto" type="submit" name="btnSalir" value="Salir">Salir&nbsp;<span class="glyphicon glyphicon-off" style="color:white" >
             </span></button>
                         </form>
-                        <?php
-                        }else{
-                            header("Location: ../index.php");
-                        }?>
+
 
                     </form>
                 </li></ul>
@@ -88,3 +85,7 @@
     <script type="text/javascript" src="componentes/js/bootstrap.min.js"></script>
 </body>
 </html>
+<?php
+}else{
+    header("Location: ../index.php");
+}?>

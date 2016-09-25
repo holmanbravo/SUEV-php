@@ -1,7 +1,11 @@
 <?php session_start() ?>
-<?php if (isset($_SESSION['nombre'])) {
-    header('Location:view/inicio.php');
-} ?>
+<?php if (isset($_SESSION['nombre']) && $_SESSION['rol']==1) {
+    header('Location:view/inicio.php');}
+if (isset($_SESSION['nombre']) && $_SESSION['rol']==2){
+    header('Location:view/inicio1.php');
+}
+
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
 <head>

@@ -11,12 +11,14 @@ if (isset($_REQUEST['btnIniciar']) && ($_REQUEST['btnIniciar'] == 'Iniciar SesiÃ
             session_start();
             $_SESSION['nombre'] = $controlador->consultarNombre($usuario);
             $_SESSION['usuario']=$usuario;
+            $_SESSION['rol']=$validador;
         header("Location:../view/inicio.php");
         exit;
         } else {
             session_start();
             $_SESSION['nombre'] = $controlador->consultarNombre($usuario);
             $_SESSION['usuario']=$usuario;
+            $_SESSION['rol']=$validador;
             header("Location:../view/inicio1.php");
             exit;
         }

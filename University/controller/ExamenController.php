@@ -1,6 +1,7 @@
 <?php
 require_once dirname(__dir__) . '/model/Examen.php';
 require_once dirname(__dir__) . '/model/ExamenDao.php';
+
 session_start();
 $examenDao = new ExamenDao();
 if (isset($_REQUEST['btnAceptar']) && ($_REQUEST['btnAceptar'] == 'Aceptar') || isset($_POST['curso'])) {
@@ -76,5 +77,26 @@ $validador=$examenDao->registrarExamen($examen,$preguntas);
 
  }
 }
+if(isset($_REQUEST['btnEmpezar']) && ($_REQUEST['btnEmpezar'] == 'Empezar') || isset($_POST['clave'])){
+   $usuario=$_SESSION['usuario'];
+   $usuario1=$_POST['usuario'];
+   $clave=$_POST['clave'];
 
+
+   if($usuario==$usuario1 ){
+      $validador=$examenDao->validarExamen($usuario,$clave);
+      if($validador==true){
+         echo'Puede presentar el examen';
+      }
+      else{
+         echo 'No esta disponible el examen en este momento';
+      }
+
+
+   }
+   else{
+      echo 'No son iguales';
+   }
+
+}
 ?>

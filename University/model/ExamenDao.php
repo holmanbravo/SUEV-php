@@ -1,11 +1,13 @@
 <?php
 require_once dirname(__dir__) . '/utils/DbConnection.php';
+require_once dirname(__dir__) . '/services/EmailService.php';
 require_once('Examen.php');
 require_once('IExamenDao.php');
 
 class ExamenDao implements IExamenDao
 {
     private $conn = null;
+    private $emailService;
 
     /**
      * ExamenDao constructor.
@@ -14,7 +16,25 @@ class ExamenDao implements IExamenDao
     public function __construct()
     {
         $this->conn = DbConnection::connect();
+        $this->emailService=new EmailService();
     }
+
+    /**
+     * @return EmailService
+     */
+    public function getEmailService()
+    {
+        return $this->emailService;
+    }
+
+    /**
+     * @param EmailService $emailService
+     */
+    public function setEmailService($emailService)
+    {
+        $this->emailService = $emailService;
+    }
+
 
 
     public function registrarExamen(Examen $examen, array $preguntas)
@@ -41,6 +61,14 @@ class ExamenDao implements IExamenDao
                 $stmt1 = $this->conn->prepare($query1);
                 $stmt1->execute();
             }
+
+            $correos=$this->notificarExamen($idExamen);
+            $examen=$this->consultarFechas($idExamen);
+            for($i = 0; $i < sizeof($examen); $i++){
+                $fechaInicio=$examen[$i]["fechaInicio"];
+                $fechaFin=$examen[$i]["fechaFin"];
+            }
+            $this->emailService->enviarCorreo($correos,$fechaInicio,$fechaFin);
 
             if ($stmt->rowCount() > 0) {
                 $salida = true;
@@ -81,6 +109,54 @@ class ExamenDao implements IExamenDao
         else{
             return false;
         }
+    }
+
+    public function  validarExamen($usuario,$clave){
+           $sql="SELECT DISTINCT(\"idExamen\") FROM examenes e
+                 JOIN cursosusuarios cu
+                 ON  e.\"codigoCurso\"=cu.\"codigoCurso\" JOIN usuarios u
+                 ON cu.identificacion=u.identificacion WHERE
+                (SELECT NOW()::timestamp) BETWEEN (\"fechaInicio\"::timestamp) AND (\"fechaFin\"::timestamp) AND
+                 u.idusuario=? AND e.\"idExamen\"=?";
+           $query = $this->conn->prepare($sql);
+           $query->bindParam(1, $usuario);
+           $query->bindParam(2, $clave);
+           $query->execute();
+           if ($query->rowCount() == 1) {
+            return true;
+           }
+           else{
+            return false;
+           }
+    }
+
+    public function notificarExamen($idExamen){
+        $correos=array();
+        $sql="SELECT  \"correoElectronico\"  FROM datospersonales d
+              JOIN  cursosusuarios cu ON d.identificacion=cu.identificacion JOIN especialidadesusuarios eu
+              ON NOT cu.identificacion=eu.identificacion WHERE cu.\"codigoCurso\"=(SELECT \"codigoCurso\" FROM examenes
+              WHERE \"idExamen\"=?);";
+        $query = $this->conn->prepare($sql);
+        $query->bindParam(1, $idExamen);
+        $query->execute();
+        foreach ($query as $row)
+        {
+            $correos[]=$row;
+        }
+        return $correos;
+    }
+
+    public function consultarFechas($idExamen){
+        $fechas=array();
+        $sql="SELECT \"fechaInicio\",\"fechaFin\" FROM examenes WHERE \"idExamen\"=?;";
+        $query = $this->conn->prepare($sql);
+        $query->bindParam(1, $idExamen);
+        $query->execute();
+        foreach ($query as $row)
+        {
+            $fechas[]=$row;
+        }
+        return $fechas;
     }
 }
 

@@ -112,7 +112,7 @@ if (sizeof($preguntas) > 0) {
         echo "<form action=\"../controller/ExamenController.php\" method=\"post\">";
 
         echo "<table style='margin: auto' width=\"90%\" border=\"1\" cellspacing=\"0\" cellpadding=\"0\">\n";
-        echo "<tr><td class=\"bgwhite10\" align =\"center\" width=\"10%\"><b> " . ($i + 1) . " </b></td>
+        echo "<tr style='background-color:#006dcc;color: white'><td class=\"bgwhite10\" align =\"center\" width=\"10%\"><b> " . ($i + 1) . " </b></td>
 			  <td colspan=5 align =\"center\"><b>" . $preguntas[$i]["enunciado"] . "<b></td></tr>\n
 		  <tr valign=\"top\">
 			  <td  width=\"20%\">a) " . $preguntas[$i]["respuesta1"] . "</td>

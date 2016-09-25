@@ -13,7 +13,7 @@
 </head>
 <body>
 <?php session_start()?>
-<?php if(isset($_SESSION['nombre']))
+<?php if(isset($_SESSION['nombre'])&& $_SESSION['rol']==1)
 {
 ?>
 
@@ -66,10 +66,7 @@
                             <button style="background-color: black;color:white;padding: 13px;width: auto" type="submit" name="btnSalir" value="Salir">Salir&nbsp;<span class="glyphicon glyphicon-off" style="color:white" >
             </span></button>
                         </form>
-                        <?php
-                        }else{
-                            header("Location: ../index.php");
-                        }?>
+
 
                     </form>
                 </li></ul>
@@ -94,3 +91,7 @@
 <script type="text/javascript" src="componentes/js/bootstrap.min.js"></script>
 </body>
 </html>
+<?php
+}else{
+    header("Location: ../index.php");
+}?>
