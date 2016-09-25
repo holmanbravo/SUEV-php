@@ -100,6 +100,20 @@ class PreguntaDao implements IPreguntaDao
     {
         // TODO: Implement eliminarPreguntas() method.
     }
+
+    public function consultarPreguntas2(Pregunta $pre)
+    {
+        $preguntas=array();
+        $sql="SELECT * FROM preguntas";
+        $query = $this->conn->prepare($sql);
+        $query->bindParam(1, $pre);
+        $query->execute();
+        foreach ($query as $row)
+        {
+            $preguntas[]=$row;
+        }
+        return $preguntas;
+    }
 }
 
 ?>

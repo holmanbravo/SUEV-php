@@ -50,7 +50,7 @@
                             class="glyphicon glyphicon-question-sign"></span> Preguntas<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="crearpreguntas.php">Crear Preguntas</a></li>
-                        <li><a href="#">Consultar Preguntas</a></li>
+                        <li><a href="consultarPreguntas.php">Consultar Preguntas</a></li>
                     </ul>
                 </li>
                 <li><a href="crearCursos.php">Crear Cursos</a></li>
