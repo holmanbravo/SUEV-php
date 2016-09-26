@@ -64,6 +64,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="examenManual.php">Registrar Examen Manual</a></li>
                             <li><a href="#">Registrar Examen Automático</a></li>
+                            <li><a href="consultarRegistroExamen.php">Consultar Registro Examen</a></li>
                         </ul>
                     </li>
                 </ul>

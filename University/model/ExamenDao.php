@@ -159,6 +159,21 @@ class ExamenDao implements IExamenDao
         }
         return $fechas;
     }
+
+
+    public function consultarExamen($usuario)
+    {
+        $examenes=array();
+        $sql="SELECT * FROM examenes WHERE \"idUsuarioCreacion\"=?;";
+        $query = $this->conn->prepare($sql);
+        $query->bindParam(1, $usuario);
+        $query->execute();
+        foreach ($query as $row)
+        {
+            $examenes[]=$row;
+        }
+        return $examenes;
+    }
 }
 
 ?>

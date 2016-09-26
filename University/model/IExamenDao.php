@@ -9,4 +9,5 @@ interface IExamenDao
     public function  validarExamen($usuario,$clave);
     public function notificarExamen($idExamen);
     public function consultarFechas($idExamen);
+    public function consultarExamen($usuario);
 }

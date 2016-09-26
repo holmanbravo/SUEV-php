@@ -56,6 +56,7 @@
                     <li class="dropdown"><a href="#"  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-folder-open"></span> Examen<span class="caret"></span></a><ul class="dropdown-menu">
                             <li><a href="examenManual.php">Registrar Examen Manual</a></li>
                             <li><a href="#">Registrar Examen Automático</a></li>
+                            <li><a href="consultarRegistroExamen.php">Consultar Registro Examen</a></li>
                         </ul>
                     </li>
                 </ul>

@@ -62,6 +62,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="examenManual.php">Registrar Examen Manual</a></li>
                             <li><a href="#">Registrar Examen Automático</a></li>
+                            <li><a href="consultarRegistroExamen.php">Consultar Registro Examen</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -96,7 +97,7 @@
 <?php require_once dirname(__dir__) . '/model/CursoDao.php';
 $cursoDao = new CursoDao();
 $cursos = $cursoDao->consultarCursoUsuario($_SESSION['usuario']);
-
+   echo '<h3 style="text-align: center">1) Complete los siguientes campos y pulse siguiente</h3><br/>';
 ?>
 <form class="form-inline" style="width: 100%" action="../controller/ExamenController.php" method="post">
     <div class=" form-group">
@@ -126,7 +127,7 @@ $cursos = $cursoDao->consultarCursoUsuario($_SESSION['usuario']);
         </div>
     </div>
     <br/>
-    <input type="submit" id="aceptar" name="btnAceptar" value="Aceptar" class="btn btn-primary" style="margin-left: 10%;margin-top: 1%"/>
+    <input type="submit" id="aceptar" name="btnAceptar" value="Siguiente" class="btn btn-primary" style="margin-left: 10%;margin-top: 1%"/>
 </form>
 
 <script type="text/javascript" src="componentes/js/jquery.min.js"></script>

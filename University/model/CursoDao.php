@@ -117,6 +117,18 @@ class CursoDao implements ICursoDao
         }
         return $cursos;
     }
+
+    public function consultarNombreCurso($codigo)
+    {
+        $sql="SELECT nombre FROM cursos WHERE codigo=?";
+        $query = $this->conn->prepare($sql);
+        $query->bindParam(1, $codigo);
+        $query->execute();
+        while ($row = $query->fetch()) {
+            return $row[0];
+        }
+
+    }
 }
 
 ?>

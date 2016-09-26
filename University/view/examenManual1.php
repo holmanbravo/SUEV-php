@@ -62,6 +62,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="examenManual.php">Registrar Examen Manual</a></li>
                             <li><a href="#">Registrar Examen Automático</a></li>
+                            <li><a href="consultarRegistroExamen.php">Consultar Registro Examen</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -100,13 +101,39 @@
 <script src="componentes/js/sweetalert.min.js"></script>
 <script src="componentes/js/sweetalert-dev.js"></script>
 
+<script>
+    $(document).ready(function () {
+        $("#myModal").modal("show");
+
+    });
+</script>
+
 <?php require_once dirname(__dir__) . '/model/PreguntaDao.php';
 $curso = $_POST['curso'];
 $fechaInicio= $_POST['fechaInicio'];
 $fechaFin=$_POST{'fechaFin'};
 $preguntaDao = new PreguntaDao();
 $preguntas = $preguntaDao->consultarPreguntas($curso);
-if (sizeof($preguntas) > 0) {
+if (sizeof($preguntas) > 4) {
+
+    echo '<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Registro Examen</h4>
+            </div>
+            <div class="modal-body">
+                <p> 2) A continuación debe seleccionar minimo 5 preguntas para que se muestren en el examen que va a programar
+                    y pulsar el boton registrar,para finalizar el registro del examen</p>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+
+    </div>
+</div>';
 
     for ($i = 0; $i < sizeof($preguntas); $i++) {
         echo "<form action=\"../controller/ExamenController.php\" method=\"post\">";
@@ -144,7 +171,7 @@ if (sizeof($preguntas) > 0) {
                 showConfirmButton: true,
                 allowOutsideClick: true
             }, function () {
-                window.location.href = \"inicio.php\";
+                window.location.href = \"crearpreguntas.php\";
             });
      </script>";
 
