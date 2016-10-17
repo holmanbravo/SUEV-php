@@ -88,7 +88,7 @@ class ExamenDao implements IExamenDao
     public function consultarIdExamen()
     {
 
-        $sql = "SELECT MAX(\"idExamen\") FROM examenes";
+        $sql = "SELECT \"idExamen\" FROM examenes WHERE \"idExamen\" LIKE '%' || (SELECT LAST_VALUE FROM examenes_seq)";
         $query = $this->conn->prepare($sql);
         $query->execute();
         while ($row = $query->fetch()) {
